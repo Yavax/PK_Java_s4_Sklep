@@ -21,7 +21,7 @@ import javax.faces.event.ActionListener;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import pomoc.Zmiana_danych;
-import warstwa_biznesowa.Fasada_warstwy_biznesowej;
+import warstwa_biznesowa.Fasada_warstwy_biznesowej_ejb;
 
 /**
  *
@@ -32,7 +32,7 @@ import warstwa_biznesowa.Fasada_warstwy_biznesowej;
 public class Managed_produkt  implements ActionListener{
 
     @EJB
-    private Fasada_warstwy_biznesowej fasada;
+    private Fasada_warstwy_biznesowej_ejb fasada;
     
     private String nazwa;
     private String kategoria;
@@ -97,11 +97,11 @@ public class Managed_produkt  implements ActionListener{
     public Managed_produkt() {   
     }
 
-    public Fasada_warstwy_biznesowej getFasada() {
+    public Fasada_warstwy_biznesowej_ejb getFasada() {
         return fasada;
     }
 
-    public void setFasada(Fasada_warstwy_biznesowej fasada) {
+    public void setFasada(Fasada_warstwy_biznesowej_ejb fasada) {
         this.fasada = fasada;
     }
     
