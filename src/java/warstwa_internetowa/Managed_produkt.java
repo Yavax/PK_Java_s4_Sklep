@@ -6,10 +6,11 @@
 package warstwa_internetowa;
 
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.EJB;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
@@ -28,8 +29,8 @@ import warstwa_biznesowa.Fasada_warstwy_biznesowej_ejb;
  * @author Paweł L. 6148
  */
 @Named(value="managed_produkt")
-@RequestScoped
-public class Managed_produkt  implements ActionListener{
+@SessionScoped
+public class Managed_produkt  implements ActionListener, Serializable{
 
     @EJB
     private Fasada_warstwy_biznesowej_ejb fasada;
@@ -200,6 +201,7 @@ public class Managed_produkt  implements ActionListener{
         return "rezultat2";
     }
     
+    @Override
     public void processAction(ActionEvent event) throws AbortProcessingException{
         dodaj_produkt();
         dane_produktu();

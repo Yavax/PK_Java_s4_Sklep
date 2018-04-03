@@ -7,12 +7,12 @@ package warstwa_biznesowa;
 
 import java.util.ArrayList;
 import java.util.Date;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 /**
  *
  * @author Paweł L. 6148
  */
-@Stateless
+@Stateful
 public class Fasada_warstwy_biznesowej_ejb {
     
     Fasada_warstwy_biznesowej fasada = new Fasada_warstwy_biznesowej();
