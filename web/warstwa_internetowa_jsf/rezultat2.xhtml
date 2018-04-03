@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../template.xhtml">
+            <ui:define name="title">
+                <h:outputText
+                    value="#{bundle['rezultat2.tytul']}">
+                </h:outputText>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:outputText escape="false" value= "#{bundle['rezultat2.nie_dodano']}"
+                                    rendered="#{managed_produkt.stan==0}"/>
+                    <h:panelGrid columns="2" rendered="#{managed_produkt.stan!=0}">
+                        <h:outputLabel value="#{bundle['Lista_produktow.nazwa']}" for="nazwa"/>
+                        <h:outputText id="nazwa" value="#{managed_produkt.nazwa}"/>
+                        <h:outputLabel value="#{bundle['Lista_produktow.kategoria']}" for="kategoria"/>
+                        <h:outputText id="kategoria" value="#{managed_produkt.kategoria}"/>
+                        <h:outputLabel value="#{bundle['Lista_produktow.cena']}" for="cena"/>
+                        <h:outputText id="cena" value="#{managed_produkt.cena}">
+                            <f:convertNumber binding="#{managed_produkt.number_convert}"
+                                             pattern="####.## z&#322; -"/>
+                        </h:outputText>
+                        <h:outputLabel value="#{bundle['Lista_produktow.promocja']}" for="promocja"/>
+                        <h:outputText id="promocja" value="#{managed_produkt.promocja}">
+                            <f:convertNumber binding="#{managed_produkt.promotion_convert}"
+                                             pattern = "##.## %"/>
+                        </h:outputText>
+                        <h:outputLabel value="#{bundle['Lista_produktow.cenabrutto']}" for="cena_brutto"/>
+                        <h:outputText id="cena_brutto" value="#{managed_produkt.cena_brutto}">
+                            <f:convertNumber binding="#{managed_produkt.number_convert}"
+                                             pattern="####.## z&#322; -"/>
+                        </h:outputText>
+                        <h:outputLabel value="#{bundle['rezultat2.data']}" for="data"/>
+                        <h:outputText id="data" value="#{managed_produkt.data_produkcji}">
+                            <f:convertDateTime dateStyle = "full"
+                                               timeStyle = "long" type = "both"/>
+                        </h:outputText>
+                    </h:panelGrid>
+                    <h:commandButton id="powrot" value="#{bundle['Lista_produktow.powrot']}" action="/faces/index1"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

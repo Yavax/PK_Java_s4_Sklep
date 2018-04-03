@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template.xhtml">
+
+            <ui:define name="title">
+                <h:outputText
+                    value="#{bundle['dodaj_produkt2.tytul']}">
+                </h:outputText>
+            </ui:define>
+            <ui:define name ="content">
+                <h:form>
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle['dodaj_produkt2.nazwa']}" for="nazwa"/>
+                        <h:inputText
+                            id="nazwa"
+                            title="#{bundle['dodaj_produkt2.nazwa']}"
+                            value="#{managed_produkt.nazwa}"
+                            required ="true"
+                            requiredMessage="#{bundle['dodaj_produkt2.blad.nazwa']}">
+                            <f:valueChangeListener binding="#{managed_produkt.zmiana1}"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle['dodaj_produkt2.kategoria']}" for="kategoria"/>
+                        <h:inputText
+                            id="kategoria"
+                            title="#{bundle['dodaj_produkt2.kategoria']}"
+                            value="#{managed_produkt.kategoria}"
+                            required ="true"
+                            requiredMessage="#{bundle['dodaj_produkt2.blad.kategoria']}">
+                            <f:valueChangeListener binding="#{managed_produkt.zmiana2}"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle['dodaj_produkt2.cena']}" for="cena"/>
+                        <h:inputText
+                            id="cena"
+                            title="#{bundle['dodaj_produkt2.cena']}"
+                            value="#{managed_produkt.cena}"
+                            required="true"
+                            requiredMessage="#{bundle['dodaj_produkt2.blad.cena']}"
+                            converter="#{managed_produkt.number_convert}"
+                            converterMessage="Blad! Poprawny format: 0,0 zł lub 0 zł">
+                            <f:valueChangeListener binding="#{managed_produkt.zmiana3}"/>
+                            <f:validateLongRange minimum="#{managed_produkt.minPrice}" maximum="#{managed_produkt.maxPrice}"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle['dodaj_produkt2.promocja']}" for="promocja"/>
+                        <h:inputText
+                            id="promocja"
+                            title="#{bundle['dodaj_produkt2.promocja']}"
+                            value="#{managed_produkt.promocja}"
+                            required="true"
+                            requiredMessage="#{bundle['dodaj_produkt2.blad.promocja']}"
+                            validator="#{managed_produkt.zakrespromocji}">
+                        </h:inputText>
+                        <h:outputLabel value="#{bundle['dodaj_produkt2.data']}" for="data" />
+                        <h:inputText
+                            id="data"
+                            title="#{bundle['dodaj_produkt2.data']}"
+                            value="#{managed_produkt.data_produkcji}"
+                            required="true"
+                            requiredMessage="#{bundle['dodaj_produkt2.blad_data']}">
+                            <f:convertDateTime pattern="dd-MM-yyyy" />
+                        </h:inputText>
+                    </h:panelGrid>
+                    <h:commandLink action="rezultat2" value="#{bundle['ok']}">
+                        <f:actionListener binding="#{managed_produkt}"/>
+                    </h:commandLink>
+                                   
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
